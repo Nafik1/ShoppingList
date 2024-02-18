@@ -15,20 +15,15 @@ class MainViewModel(application : Application) : AndroidViewModel(application) {
     private val deleteshoplistUseCase = delete_shoplist_usecase(repository)
     private val editshoplistUseCase = edit_shopitem_usecase(repository)
 
-    val shoplist = MutableLiveData<List<shop_item>>()
-    fun getShopList() {
-        val list = getshoplistUseCase.getShopList()
-        shoplist.value = list
-    }
+    val shoplist = getshoplistUseCase.getShopList()
+
     fun deleteItem(item : shop_item) {
         deleteshoplistUseCase.deleteShopList(item)
-        getShopList()
     }
     fun changeEnableState(item : shop_item) {
         if (item.status != null) {
             val newItem = item.copy(status = !(item.status))
             editshoplistUseCase.editShopItem(newItem)
-            getShopList()
         }
     }
 }
