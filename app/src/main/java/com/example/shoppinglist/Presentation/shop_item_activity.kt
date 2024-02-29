@@ -15,7 +15,7 @@ import com.example.shoppinglist.Domain.shop_item
 import com.example.shoppinglist.R
 import com.google.android.material.textfield.TextInputLayout
 
-class shop_item_activity : AppCompatActivity() {
+class shop_item_activity : AppCompatActivity(), shopItemFragment.onEditingFinishedListenner {
     private var screenMode = MODE_UNKNOWN
     private var shopItemId = shop_item.UNDENFINED_ID
 
@@ -55,6 +55,11 @@ class shop_item_activity : AppCompatActivity() {
             shopItemId = intent.getIntExtra(EXTRA_SHOPITEM_ID, shop_item.UNDENFINED_ID)
         }
     }
+
+    override fun onEditingFinished() {
+        finish()
+    }
+
     companion object {
         private const val EXTRA_MODE: String = "EXTRA_MODE"
         private const val MODE_EDIT = "mode_edit"

@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout
 class shopItemFragment
  : Fragment() {
     private lateinit var si_viewmodel: shopItemViewModel
+    private lateinit var onEditing: onEditingFinishedListenner
 
     private lateinit var tilName: TextInputLayout
     private lateinit var tilCount: TextInputLayout
@@ -28,6 +29,15 @@ class shopItemFragment
 
     private var screenMode: String = MODE_UNKNOWN
     private var shopItemId: Int = shop_item.UNDENFINED_ID
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is onEditingFinishedListenner) {
+            onEditing = context
+        } else {
+            throw RuntimeException("Activity must implements")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +91,9 @@ class shopItemFragment
             MODE_ADD -> launch_add_mode()
         }
     }
-
+    interface onEditingFinishedListenner {
+        fun onEditingFinished()
+    }
     private fun addTextChangeListeners() {
         etName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
