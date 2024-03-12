@@ -1,4 +1,4 @@
-package com.example.shoppinglist.Domain
+package com.example.shoppinglist.Domain.entity
 
 data class shop_item (
     val name: String,
@@ -8,6 +8,6 @@ data class shop_item (
 )
 {
     companion object {
-        const val UNDENFINED_ID = -1;
+        const val UNDENFINED_ID = 0;
     }
 }

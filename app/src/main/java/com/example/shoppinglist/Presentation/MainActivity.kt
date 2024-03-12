@@ -8,23 +8,28 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.shoppinglist.Presentation.viewmodel.MainViewModel
 import com.example.shoppinglist.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.shoppinglist.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), shopItemFragment.onEditingFinishedListenner {
     private lateinit var viewmodel: MainViewModel
     private lateinit var adapter: shopListAdapter
     private var shopItemContainer : FragmentContainerView? = null
+    private var _binding : ActivityMainBinding? = null
+    private val binding : ActivityMainBinding
+        get() = _binding ?: throw RuntimeException("oao")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main   )
-        shopItemContainer = findViewById(R.id.shopItemContainer)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        shopItemContainer = binding.shopItemContainer
         setupRw()
         viewmodel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewmodel.shoplist.observe(this) {
             adapter.submitList(it)
         }
-        val buttonAddItem = findViewById<FloatingActionButton>(R.id.button_add_shop_item)
+        val buttonAddItem = binding.buttonAddShopItem
         buttonAddItem.setOnClickListener {
             if (isOnePaneMode()) {
                 val intent = shop_item_activity.newIntentAdd(this)
@@ -41,7 +46,8 @@ class MainActivity : AppCompatActivity(), shopItemFragment.onEditingFinishedList
     }
 
     private fun setupRw() {
-        val rvShopList = findViewById<RecyclerView>(R.id.rv_shop_list)
+        val rvShopList = binding.rvShopList
+        //val rvShopList = findViewById<RecyclerView>(R.id.rv_shop_list)
         adapter = shopListAdapter()
         rvShopList.adapter = adapter
         rvShopList.recycledViewPool.setMaxRecycledViews(

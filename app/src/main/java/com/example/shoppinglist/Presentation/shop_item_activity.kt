@@ -4,16 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.shoppinglist.Domain.shop_item
+import com.example.shoppinglist.Domain.entity.shop_item
 import com.example.shoppinglist.R
-import com.google.android.material.textfield.TextInputLayout
 
 class shop_item_activity : AppCompatActivity(), shopItemFragment.onEditingFinishedListenner {
     private var screenMode = MODE_UNKNOWN

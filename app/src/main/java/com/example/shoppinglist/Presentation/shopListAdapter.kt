@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shoppinglist.Domain.shop_item
+import com.example.shoppinglist.Domain.entity.shop_item
 import com.example.shoppinglist.R
 
 class shopListAdapter : ListAdapter<shop_item,shopListAdapter.shopItemViewHolder>(shopItemDiffCallback()){
