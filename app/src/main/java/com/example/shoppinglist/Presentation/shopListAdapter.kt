@@ -55,7 +55,7 @@ class shopListAdapter : ListAdapter<shop_item,shopListAdapter.shopItemViewHolder
             DISABLED_VIEW_TYPE
         }
     }
-
+//1
     class shopItemViewHolder(
         val view: View
     ) : RecyclerView.ViewHolder(view) {
