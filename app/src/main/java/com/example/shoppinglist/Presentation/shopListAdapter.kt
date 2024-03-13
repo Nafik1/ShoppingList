@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglist.Domain.entity.shop_item
 import com.example.shoppinglist.R
+import com.example.shoppinglist.databinding.ActivityMainBinding
+import com.example.shoppinglist.databinding.ItemShopDisabledBinding
+import com.example.shoppinglist.databinding.ItemShopEnableBinding
 
 class shopListAdapter : ListAdapter<shop_item,shopListAdapter.shopItemViewHolder>(shopItemDiffCallback()){
 
@@ -25,6 +28,7 @@ class shopListAdapter : ListAdapter<shop_item,shopListAdapter.shopItemViewHolder
             parent,
             false
         )
+
         return shopItemViewHolder(view)
     }
 
@@ -52,9 +56,12 @@ class shopListAdapter : ListAdapter<shop_item,shopListAdapter.shopItemViewHolder
         }
     }
 
-    class shopItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    class shopItemViewHolder(
+        val view: View
+    ) : RecyclerView.ViewHolder(view) {
         val textVName = view.findViewById<TextView>(R.id.tv_name)
         val textVCount = view.findViewById<TextView>(R.id.tv_count)
+
     }
 
     companion object {

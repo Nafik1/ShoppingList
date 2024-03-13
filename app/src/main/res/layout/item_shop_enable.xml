@@ -12,6 +12,7 @@
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
     <LinearLayout
+        android:id="@+id/click"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#943bbe"
